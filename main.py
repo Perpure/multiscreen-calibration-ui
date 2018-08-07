@@ -5,8 +5,8 @@ if __name__ == '__main__':
     def nothing(*arg):
         pass
 
-cv2.namedWindow( "result" )
-cv2.namedWindow( "settings" )
+cv2.namedWindow( "result", cv2.WINDOW_NORMAL )
+cv2.namedWindow( "settings", cv2.WINDOW_NORMAL )
 
 cv2.createTrackbar('h1', 'settings', 0, 255, nothing)
 cv2.createTrackbar('s1', 'settings', 0, 255, nothing)
@@ -14,8 +14,6 @@ cv2.createTrackbar('v1', 'settings', 0, 255, nothing)
 cv2.createTrackbar('h2', 'settings', 255, 255, nothing)
 cv2.createTrackbar('s2', 'settings', 255, 255, nothing)
 cv2.createTrackbar('v2', 'settings', 255, 255, nothing)
-crange = [0,0,0, 0,0,0]
-
 while True:
     img = cv2.imread('images/picture.jpeg')
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV )
