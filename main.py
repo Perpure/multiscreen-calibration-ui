@@ -1,10 +1,14 @@
 import cv2
+from tkinter import Tk
 import numpy as np
+from tkinter.filedialog import askopenfilename
 
 if __name__ == '__main__':
     def nothing(*arg):
         pass
-
+Tk().withdraw()
+path = askopenfilename()
+img = cv2.imread(path)
 cv2.namedWindow( "result", cv2.WINDOW_NORMAL )
 cv2.namedWindow( "settings", cv2.WINDOW_NORMAL )
 
@@ -14,8 +18,9 @@ cv2.createTrackbar('v1', 'settings', 0, 255, nothing)
 cv2.createTrackbar('h2', 'settings', 255, 255, nothing)
 cv2.createTrackbar('s2', 'settings', 255, 255, nothing)
 cv2.createTrackbar('v2', 'settings', 255, 255, nothing)
+
+
 while True:
-    img = cv2.imread('images/picture.jpeg')
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV )
 
     h1 = cv2.getTrackbarPos('h1', 'settings')
