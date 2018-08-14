@@ -48,8 +48,8 @@ class MainWindow:
         self.build_widgets()
 
     def build_widgets(self):
-        self.view = Canvas(settings, width=300, height=300, bg="white")
-        self.view.pack()
+        self.view = Canvas(settings, width=800, height=450, bg="white")
+        self.view.pack(expand=YES, fill=BOTH)
         s_h1 = Scale(settings, from_=0, to=255, orient=HORIZONTAL, command=hsv1.upd_h)
         s_h1.pack()
         s_s1 = Scale(settings, from_=0, to=255, orient=HORIZONTAL, command=hsv1.upd_s)
@@ -70,13 +70,17 @@ class MainWindow:
         choose.pack()
 
     def update(self, mask):
-        self.image = ImageTk.PhotoImage(Image.fromarray(mask))
-        self.view.create_image(0, 0, image=self.image, anchor="center")
+        img = Image.fromarray(mask)
+        img = img.resize((800, 450), Image.BICUBIC)
+        self.image = ImageTk.PhotoImage(img)
+        self.view.create_image(0, 0, image=self.image, anchor=NW)
 
     def choose_file(self):
         self.path = askopenfilename()
-        self.image = ImageTk.PhotoImage(Image.open(self.path))
-        self.view.create_image(0, 0, image=self.image, anchor="center")
+        img = Image.open(self.path)
+        img = img.resize((800, 450), Image.BICUBIC)
+        self.image = ImageTk.PhotoImage(img)
+        self.view.create_image(0, 0, image=self.image, anchor=NW)
 
 
 hsv1 = Hsv()
