@@ -20,7 +20,7 @@
 
 4. Установить необходимые пакеты
     ```
-    apt-get install python-tk
+    apt-get install python3-tk
     ```
 
 5. Поместить нужную фотографию по этому пути
